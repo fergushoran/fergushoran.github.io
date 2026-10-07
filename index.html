@@ -1,151 +1,213 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link
-            href="https://fonts.cdnfonts.com/css/eurostile"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.cdnfonts.com/css/futura-std-4"
-            rel="stylesheet"
-        />
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="icon" href="/favicon.png" type="image/x-icon">
-        <title>Fergus Horan</title>
-        <style>
-            @font-face {
-                @import url("https://fonts.cdnfonts.com/css/eurostile");
-                @import url("https://fonts.cdnfonts.com/css/futura-std-4");
-                @import url("https://fonts.cdnfonts.com/css/albertus-medium");
-            }
-            body {
-                background-color: #4886d1;
-                color: #ffffff;
-                margin: 0;
-                padding: 0;
-                font-family: "Futura Std", sans-serif;
-            }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fergus Horan</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="FH">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f6ef;
+    --ink: #15241a;
+    --muted: #5b6a5d;
+    --link: #2a6330;
+    --accent: #84621a;
+    --rule: #d3dcc9;
+    --vignette: rgba(70, 90, 55, 0.07);
+    --grain-opacity: 0.11;
+    --grain-blend: multiply;
+    --font: "Jost", Futura, "Century Gothic", "Trebuchet MS", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1a11;
+      --ink: #e6ead9;
+      --muted: #9aab98;
+      --link: #cdb877;
+      --accent: #a99a6c;
+      --rule: #233626;
+      --vignette: rgba(0, 0, 0, 0.28);
+      --grain-opacity: 0.07;
+      --grain-blend: screen;
+    }
+  }
 
-            .container {
-                padding: 20px;
-                max-width: 800px;
-                margin: auto;
-            }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
 
-            h1 {
-                font-family: "Eurostile", sans-serif;
-                font-family: "EuroStyle", sans-serif;
-                font-size: 2em;
-                color: #ffffff;
-                margin: 20px 0;
-            }
+  body::before, body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::before {
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  body::after {
+    background: radial-gradient(ellipse 85% 75% at 50% 40%, transparent 62%, var(--vignette) 100%);
+  }
 
-            h2 {
-                font-size: 1.5em;
-                color: #ffffff;
-                margin-top: 40px;
-                border-bottom: 2px solid #ffffff;
-                padding-bottom: 10px;
-            }
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 5rem;
+  }
 
-            p {
-                font-size: 1.2em;
-                line-height: 1.6em;
-                color: #ffffff;
-            }
+  header {
+    display: grid;
+    grid-template-columns: 1fr 19rem;
+    grid-template-areas: "text photo";
+    column-gap: 3rem;
+    align-items: start;
+  }
+  .intro { grid-area: text; }
+  .portrait {
+    grid-area: photo;
+    margin: 0.4rem 0 0;
+    width: 19rem;
+    height: 19rem;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+    background: var(--rule);
+  }
 
-            .nav {
-                position: fixed;
-                top: 0;
-                left: 0;
-                background-color: #4886d1;
-                width: 100%;
-                padding: 10px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            }
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.25rem;
+  }
+  .lede { margin: 0 0 1rem; }
+  .contact { margin: 1.5rem 0 0; }
+  .contact a + a { margin-left: 1.25rem; }
 
-            .nav h1 {
-                display: inline;
-                margin: 0;
-                padding-right: 20px;
-                font-size: 1.5em;
-            }
+  a {
+    color: var(--link);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+  a:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* Quiet cue that a title opens a PDF */
+  a.doc::after {
+    content: "pdf";
+    font-size: 0.68em;
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 0.4em;
+  }
 
-            .nav a {
-                color: #ffffff;
-                margin-right: 20px;
-                text-decoration: none;
-                font-size: 1.2em;
-            }
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 3.25rem 0 0.75rem;
+  }
 
-            .section {
-                margin-top: 80px;
-            }
+  .entries { list-style: none; margin: 0; padding: 0; }
+  .entry {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    column-gap: 1.5rem;
+    align-items: baseline;   /* status and title share a baseline */
+    padding: 0.55rem 0;
+  }
+  .entry.plain .title { grid-column: 2; }
 
-            .container img {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                margin: 20px auto;
-                border: 3px solid #ffffff;
-            }
-            .container a {
-                color: #ffffff;
-                background-color: transparent;
-                text-decoration: underline;
-            }
+  .meta { font-size: 0.95rem; line-height: 1.45; }
+  .status { color: var(--accent); }
 
-            @media (max-width: 480px) {
-                h1 {
-                    font-size: 1.2em;
-                }
+  .title { margin: 0; font-size: 1.15rem; }
+  .note {
+    display: block;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-top: 0.05rem;
+  }
 
-                h2 {
-                    font-size: 1.1em;
-                    margin-top: 20px;
-                }
+  .syllabi { display: flex; flex-wrap: wrap; gap: 0.25rem 1.75rem; }
 
-                p {
-                    font-size: 0.9em;
-                }
+  @media (max-width: 44rem) {
+    main { padding-top: 2.5rem; }
+    header {
+      grid-template-columns: 1fr;
+      grid-template-areas: "photo" "text";
+      row-gap: 1.5rem;
+    }
+    .portrait { width: 13rem; height: 13rem; margin: 0; }
+    h1 { font-size: 2.1rem; }
+    .entry { grid-template-columns: 1fr; row-gap: 0.1rem; padding: 0.65rem 0; }
+    .entry.plain .title { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img class="portrait" src="photo.jpg" alt="Portrait of Fergus Horan" width="720" height="720">
+    <div class="intro">
+      <h1>Fergus Horan</h1>
+      <p class="lede">I am a PhD student in the Philosophy department at Johns Hopkins University, working on German Idealism and Early Modern philosophy. I am writing a dissertation on Kant’s account of the imagination, supervised by Lucy Allais.</p>
+      <p class="lede">In 2025–26, I was a DAAD fellow at Humboldt-Universität zu Berlin. Prior to coming to Hopkins, I studied Physics and Philosophy at King’s College London.</p>
+      <p class="contact">
+        <a href="mailto:fhoran3@jh.edu">fhoran3@jh.edu</a>
+        <a href="cv.pdf">Curriculum Vitae</a>
+      </p>
+    </div>
+  </header>
 
-                .nav {
-                    flex-direction: column;
-                }
+  <h2>Papers and drafts</h2>
+  <ul class="entries">
+    <li class="entry">
+      <div class="meta"><span class="status">Revise and resubmit</span></div>
+      <p class="title"><a class="doc" href="papers/presence.pdf"><i>A paper on imagination and intuition in Kant</i></a><span class="note">Kantian Review</span></p>
+    </li>
+    <li class="entry">
+      <div class="meta"><span class="status">Under review</span></div>
+      <p class="title"><a class="doc" href="papers/homogeneity.pdf"><i>A paper on the Schematism</i></a></p>
+    </li>
+   <li class="entry">
+      <div class="meta"><span class="status">In progress</span></div>
+      <p class="title"><a class="doc" href="papers/fichtefirst.pdf">Fichte’s First Theorem of Natural Right</a></p>
+    </li> 
+  </ul>
 
-                .nav h1 {
-                    padding-bottom: 10px;
-                    flex: none;
-                }
-
-                .nav a {
-                    font-size: 0.9em;
-                    margin-right: 0;
-                    margin-bottom: 10px;
-                    flex: none;
-                }
-            }
-        </style>
-    </head>
-    <body>
-<!-- ORDIC IN BAR? -->
-        <div class="container">
-            <div id="bio" class="section">
-                <img src="headshot1.png" alt="Fergus Horan" />
-                <p>
-                    I’m Fergus Horan, a PhD Student at the Philosophy department at Johns
-                    Hopkins University, working on German Idealism. I am writing
-                    a dissertation on Kant's account of the imagination,
-                    supervised by Lucy Allais.
-                </p>
-
-                <p>
-                    Prior to coming to Hopkins, I studied Physics and Philosophy
-                    at King’s College London.
-                </p>
-                <p>I’m most easily reached by email at fhoran3@jh.edu, and my CV is <a href="cv.pdf" target="_blank" rel="noopener noreferrer">here</a>.</p>
-                <p>You may, on occasion, see my name spelled “Fearghus”.</p>
-            </div>
-    </body>
+  <h2>Syllabi</h2>
+  <!-- Put each syllabus PDF in a syllabi/ folder next to this file, named as in the links below -->
+  <ul class="entries">
+    <li class="entry plain">
+      <p class="title syllabi">
+        <a class="doc" href="syllabi/kant.pdf">Kant</a>
+       <!-- <a class="doc" href="syllabi/em.pdf">Early Modern Philosophy</a> -->
+        <a class="doc" href="syllabi/imagination.pdf">Philosophy and the Imagination</a>
+      </p>
+    </li>
+  </ul>
+</main>
+</body>
 </html>
